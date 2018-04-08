@@ -1,4 +1,4 @@
-baseURL = "https://tangsttw.github.io/blog/"
+baseURL = "https://tangsttw.github.io/my_blog/"
 title = "YT Notes Blog"
 enableRobotsTXT = true
 enableEmoji = true
