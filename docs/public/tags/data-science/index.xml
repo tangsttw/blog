@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Science on YT Notes Blog</title>
+    <link>https://tangsttw.github.io/blog/tags/data-science/</link>
+    <description>Recent content in Data Science on YT Notes Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 08 Apr 2018 14:17:37 +0800</lastBuildDate>
+    
+	<atom:link href="https://tangsttw.github.io/blog/tags/data-science/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Kaggle Data Clean Challenge Day 1 - Missing Values</title>
+      <link>https://tangsttw.github.io/blog/post/kaggle-data-clean-challenge-day-1/</link>
+      <pubDate>Sun, 08 Apr 2018 14:17:37 +0800</pubDate>
+      
+      <guid>https://tangsttw.github.io/blog/post/kaggle-data-clean-challenge-day-1/</guid>
+      <description>Kaggle DCC Day 1 Handling Missing values This is the note for day 1 of the 5-day data challenge held by Kaggle. In the first day, the topic is how to deal with missing values.
+Notebook code of the challenge
+Intro Data science is a science based on data and is highly related to data; the quality of data has huge effect on the result. Therefore, it is important to ensure the data quality before executing any analysis on data.</description>
+    </item>
+    
+  </channel>
+</rss>

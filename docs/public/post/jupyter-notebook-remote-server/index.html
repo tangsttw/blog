@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Connect to Jupyter Notebook on Remote Server - YT Notes Blog</title>
+  <link rel="alternate" hreflang="en" href="https://tangsttw.github.io/blog/" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="YT" />
+  <meta name="description" content="If you installed jupyter notebook on a server and would like to access the jupyter notebook application from another computer, there are several steps need to be done. Follow the instructions below, then you can access the browser-based jupyter notebook from your computer.
+Step 1 - Generate configuration file The first thing to be done is to generate a configuration file. In this file, we can configure the password used to login and access jupyter notebook from remote, and also configure the port at which will jupyter notebook be launched." />
+
+  <meta name="keywords" content="Programming, Learning, Notes" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.38.1" />
+
+
+<link rel="canonical" href="https://tangsttw.github.io/blog/post/jupyter-notebook-remote-server/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/blog/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/blog/favicon-16x16.png">
+<link rel="icon" href="/blog/favicon.ico" />
+<link rel="manifest" href="/blog/manifest.json">
+<link rel="mask-icon" href="/blog/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<link href="/blog/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+<link href="/blog/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Connect to Jupyter Notebook on Remote Server" />
+<meta property="og:description" content="If you installed jupyter notebook on a server and would like to access the jupyter notebook application from another computer, there are several steps need to be done. Follow the instructions below, then you can access the browser-based jupyter notebook from your computer.
+Step 1 - Generate configuration file The first thing to be done is to generate a configuration file. In this file, we can configure the password used to login and access jupyter notebook from remote, and also configure the port at which will jupyter notebook be launched." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tangsttw.github.io/blog/post/jupyter-notebook-remote-server/" />
+
+
+
+<meta property="article:published_time" content="2018-04-09T14:57:53&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-04-09T14:57:53&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Connect to Jupyter Notebook on Remote Server">
+<meta itemprop="description" content="If you installed jupyter notebook on a server and would like to access the jupyter notebook application from another computer, there are several steps need to be done. Follow the instructions below, then you can access the browser-based jupyter notebook from your computer.
+Step 1 - Generate configuration file The first thing to be done is to generate a configuration file. In this file, we can configure the password used to login and access jupyter notebook from remote, and also configure the port at which will jupyter notebook be launched.">
+
+
+<meta itemprop="datePublished" content="2018-04-09T14:57:53&#43;08:00" />
+<meta itemprop="dateModified" content="2018-04-09T14:57:53&#43;08:00" />
+<meta itemprop="wordCount" content="537">
+
+
+
+<meta itemprop="keywords" content="jupyter notebook," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Connect to Jupyter Notebook on Remote Server"/>
+<meta name="twitter:description" content="If you installed jupyter notebook on a server and would like to access the jupyter notebook application from another computer, there are several steps need to be done. Follow the instructions below, then you can access the browser-based jupyter notebook from your computer.
+Step 1 - Generate configuration file The first thing to be done is to generate a configuration file. In this file, we can configure the password used to login and access jupyter notebook from remote, and also configure the port at which will jupyter notebook be launched."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/blog/" class="logo">YT Notes Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/blog/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/blog/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/blog/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/blog/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/blog/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/blog/" class="logo">YT Notes Blog</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        
+        <a class="menu-item-link" href="/blog/">Home</a>
+        
+      </li><li class="menu-item">
+        
+        <a class="menu-item-link" href="/blog/post/">Archives</a>
+        
+      </li><li class="menu-item">
+        
+        <a class="menu-item-link" href="/blog/tags/">Tags</a>
+        
+      </li><li class="menu-item">
+        
+        <a class="menu-item-link" href="/blog/categories/">Categories</a>
+        
+      </li><li class="menu-item">
+        
+        <a class="menu-item-link" href="/blog/about/">About</a>
+        
+      </li>
+  </ul>
+</nav>
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Connect to Jupyter Notebook on Remote Server</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 09-04-2018 </span>
+        <div class="post-category">
+            
+              <a href="/blog/categories/jupyter-notebook/"> jupyter notebook </a>
+            
+          </div>
+        <span class="more-meta"> 537 words </span>
+        <span class="more-meta"> 3 min read </span>
+      </div>
+    </header>
+
+    
+    
+
+    
+    <div class="post-content">
+      
+
+<p>If you installed jupyter notebook on a server and would like to access the jupyter notebook application from another computer, there are several steps need to be done. Follow the instructions below, then you can access the browser-based jupyter notebook from your computer.</p>
+
+<h1 id="step-1-generate-configuration-file">Step 1 - Generate configuration file</h1>
+
+<p>The first thing to be done is to generate a configuration file. In this file, we can configure the password used to login and access jupyter notebook from remote, and also configure the port at which will jupyter notebook be launched.</p>
+
+<pre><code>$ jupyter notebook --generate-config
+</code></pre>
+
+<p>By this instruction will generate a configuration file named <code>jupyter_notebook_config.json</code> under <code>~/.jupyter/</code> directory.</p>
+
+<h1 id="step-2-set-login-password">Step 2 - Set login password</h1>
+
+<p>In this step we are going to setup a password for authenticating the login instead of using a token. This passord is set for login from remote computer.</p>
+
+<pre><code>$ jupyter notebook password
+Enter password:  ****
+Verify password: ****
+\[NotebookPasswordApp\] Wrote hashed password to /Users/you/.jupyter/jupyter\_notebook\_config.json
+
+</code></pre>
+
+<p>This instruction performs a setup process with password defined by user input. Then, it will hash the password and store it in configuration file.</p>
+
+<h1 id="step-3-set-launch-configuration">Step 3 - Set launch configuration</h1>
+
+<p>This is the key step for setting up remote access to jupyter notebook. Generally, there are two ways to perform this step, (1) through ssh and (2) launch a public server.</p>
+
+<h2 id="1-through-ssh">1. through ssh</h2>
+
+<p>This is a relatively simple way thant the other. The only thing need to be done on server side is launch jupyter notebook on a certain port.</p>
+
+<pre><code>$ jupyter notebook --no-browser --port=[user-define-port]
+
+ex.
+jupyter notebook --no-browser --port=8889
+</code></pre>
+
+<p>The <code>--no-browser</code> option will launch jupyter notebook without opening a browser on local server.
+Next step is to connect from remote computer with ssh.</p>
+
+<h2 id="2-launch-a-public-server-skip-step-4">2. launch a public server (skip step 4)</h2>
+
+<p>In this way, we will launch jupyter notebook on a public port using web server. Therefore, we have to setup SSL for web certificate first.
+We use openssl to generate self-signed certificate.</p>
+
+<pre><code>$ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout [/path/to/store/mykey.key] -out [/path/to/store/mykeymycert.pem]
+$ jupyter notebook --certfile=mycert.pem --keyfile mykey.key
+</code></pre>
+
+<p>After this, we setup the jupyter notebook configuration file. Open and edit the file <code>jupyter_notebook_config.py</code> under <code>~/.jupyter/</code> directory. In the configuration file, setting commands are commented by default. To enable the setting, uncomment and edit the code with our information.</p>
+
+<pre><code class="language-shell"># Set options for certfile, ip, password, and toggle off
+# browser auto-opening
+c.NotebookApp.certfile = u'[/absolute/path/to/your/certificate/mycert.pem]'
+c.NotebookApp.keyfile = u'[/absolute/path/to/your/certificate/mykey.key]'
+# Set ip to '*' to bind on all interfaces (ips) for the public server
+c.NotebookApp.ip = '*'
+# The password is generated from step 2
+c.NotebookApp.password = u'sha1:bcd259ccf...&lt;your hashed password here&gt;'
+#
+c.NotebookApp.open_browser = False
+
+# It is a good idea to set a known, fixed port for server access
+c.NotebookApp.port = [user-define-port]
+</code></pre>
+
+<p>After the configuration, we can now connect to [ip]:[user-define-port] from remote computer to access jupyter notebook.</p>
+
+<h1 id="step-4-client-side-setting">Step 4 - Client side setting</h1>
+
+<p>If you choose to setup jupyter notebook server through ssh in <a href="#1-through-ssh">step 3</a>, there are little setup should be done on client side.
+Use ssh to connect to server via the port where jupyter notebook is launched and bind it to localhost 8888 port.</p>
+
+<pre><code>ssh -N -L localhost:8888:localhost:[server-port] [user]@[remote-server]
+</code></pre>
+
+<p>Then, open <code>localhost:8888</code> in browser to access jupyter notebook.</p>
+
+<pre><code>localhost:8888
+</code></pre>
+
+<h3 id="reference">Reference</h3>
+
+<p><a href="http://jupyter-notebook.readthedocs.io/en/stable/public_server.html">http://jupyter-notebook.readthedocs.io/en/stable/public_server.html</a></p>
+
+    </div>
+
+    
+    
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/blog/tags/jupyter-notebook/">jupyter notebook</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/blog/post/kaggle-data-clean-challenge-day-1/">
+            <span class="next-text nav-default">Kaggle Data Clean Challenge Day 1 - Missing Values</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+    
+  </article>
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" rel="me" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" rel="me" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" rel="me" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" rel="me" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" rel="me" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" rel="me" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" rel="me" class="iconfont icon-instagram" title="instagram"></a>
+  <a href="https://tangsttw.github.io/blog/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      30-03-2018 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">YT</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/blog/lib/highlight/highlight.pack.js?v=20171001"></script>
+<script type="text/javascript" src="/blog/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/blog/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/blog/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+<script type="text/javascript" src="/blog/dist/jane.min.js?v=2.7.0"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+
+
+
+
+
+</body>
+</html>

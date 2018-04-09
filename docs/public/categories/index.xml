@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on YT Notes Blog</title>
+    <link>https://tangsttw.github.io/blog/categories/</link>
+    <description>Recent content in Categories on YT Notes Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    
+	<atom:link href="https://tangsttw.github.io/blog/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Jupyter Notebook</title>
+      <link>https://tangsttw.github.io/blog/categories/jupyter-notebook/</link>
+      <pubDate>Mon, 09 Apr 2018 14:57:53 +0800</pubDate>
+      
+      <guid>https://tangsttw.github.io/blog/categories/jupyter-notebook/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kaggle</title>
+      <link>https://tangsttw.github.io/blog/categories/kaggle/</link>
+      <pubDate>Sun, 08 Apr 2018 14:17:37 +0800</pubDate>
+      
+      <guid>https://tangsttw.github.io/blog/categories/kaggle/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

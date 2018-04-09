@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jupyter Notebook on YT Notes Blog</title>
+    <link>https://tangsttw.github.io/blog/categories/jupyter-notebook/</link>
+    <description>Recent content in Jupyter Notebook on YT Notes Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 09 Apr 2018 14:57:53 +0800</lastBuildDate>
+    
+	<atom:link href="https://tangsttw.github.io/blog/categories/jupyter-notebook/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Connect to Jupyter Notebook on Remote Server</title>
+      <link>https://tangsttw.github.io/blog/post/jupyter-notebook-remote-server/</link>
+      <pubDate>Mon, 09 Apr 2018 14:57:53 +0800</pubDate>
+      
+      <guid>https://tangsttw.github.io/blog/post/jupyter-notebook-remote-server/</guid>
+      <description>If you installed jupyter notebook on a server and would like to access the jupyter notebook application from another computer, there are several steps need to be done. Follow the instructions below, then you can access the browser-based jupyter notebook from your computer.
+Step 1 - Generate configuration file The first thing to be done is to generate a configuration file. In this file, we can configure the password used to login and access jupyter notebook from remote, and also configure the port at which will jupyter notebook be launched.</description>
+    </item>
+    
+  </channel>
+</rss>
