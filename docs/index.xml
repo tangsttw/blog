@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>YT Notes Blog</title>
-    <link>https://tangsttw.github.io/my_blog/</link>
+    <link>https://tangsttw.github.io/blog/</link>
     <description>Recent content on YT Notes Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sat, 31 Mar 2018 01:25:52 +0800</lastBuildDate>
     
-        <atom:link href="https://tangsttw.github.io/my_blog/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://tangsttw.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>https://tangsttw.github.io/my_blog/about/</link>
+      <link>https://tangsttw.github.io/blog/about/</link>
       <pubDate>Sat, 31 Mar 2018 01:25:52 +0800</pubDate>
       
-      <guid>https://tangsttw.github.io/my_blog/about/</guid>
+      <guid>https://tangsttw.github.io/blog/about/</guid>
       
         <description>
 
@@ -30,11 +30,109 @@
     </item>
     
     <item>
+      <title>Connect to Jupyter Notebook on Remote Server</title>
+      <link>https://tangsttw.github.io/blog/post/jupyter-notebook-remote-server/</link>
+      <pubDate>Mon, 09 Apr 2018 14:57:53 +0800</pubDate>
+      
+      <guid>https://tangsttw.github.io/blog/post/jupyter-notebook-remote-server/</guid>
+      
+        <description>
+
+&lt;p&gt;If you installed jupyter notebook on a server and would like to access the jupyter notebook application from another computer, there are several steps need to be done. Follow the instructions below, then you can access the browser-based jupyter notebook from your computer.&lt;/p&gt;
+
+&lt;h1 id=&#34;step-1-generate-configuration-file&#34;&gt;Step 1 - Generate configuration file&lt;/h1&gt;
+
+&lt;p&gt;The first thing to be done is to generate a configuration file. In this file, we can configure the password used to login and access jupyter notebook from remote, and also configure the port at which will jupyter notebook be launched.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ jupyter notebook --generate-config
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By this instruction will generate a configuration file named &lt;code&gt;jupyter_notebook_config.json&lt;/code&gt; under &lt;code&gt;~/.jupyter/&lt;/code&gt; directory.&lt;/p&gt;
+
+&lt;h1 id=&#34;step-2-set-login-password&#34;&gt;Step 2 - Set login password&lt;/h1&gt;
+
+&lt;p&gt;In this step we are going to setup a password for authenticating the login instead of using a token. This passord is set for login from remote computer.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ jupyter notebook password
+Enter password:  ****
+Verify password: ****
+\[NotebookPasswordApp\] Wrote hashed password to /Users/you/.jupyter/jupyter\_notebook\_config.json
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This instruction performs a setup process with password defined by user input. Then, it will hash the password and store it in configuration file.&lt;/p&gt;
+
+&lt;h1 id=&#34;step-3-set-launch-configuration&#34;&gt;Step 3 - Set launch configuration&lt;/h1&gt;
+
+&lt;p&gt;This is the key step for setting up remote access to jupyter notebook. Generally, there are two ways to perform this step, (1) through ssh and (2) launch a public server.&lt;/p&gt;
+
+&lt;h2 id=&#34;1-through-ssh&#34;&gt;1. through ssh&lt;/h2&gt;
+
+&lt;p&gt;This is a relatively simple way thant the other. The only thing need to be done on server side is launch jupyter notebook on a certain port.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ jupyter notebook --no-browser --port=[user-define-port]
+
+ex.
+jupyter notebook --no-browser --port=8889
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;--no-browser&lt;/code&gt; option will launch jupyter notebook without opening a browser on local server.
+Next step is to connect from remote computer with ssh.&lt;/p&gt;
+
+&lt;h2 id=&#34;2-launch-a-public-server-skip-step-4&#34;&gt;2. launch a public server (skip step 4)&lt;/h2&gt;
+
+&lt;p&gt;In this way, we will launch jupyter notebook on a public port using web server. Therefore, we have to setup SSL for web certificate first.
+We use openssl to generate self-signed certificate.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout [/path/to/store/mykey.key] -out [/path/to/store/mykeymycert.pem]
+$ jupyter notebook --certfile=mycert.pem --keyfile mykey.key
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After this, we setup the jupyter notebook configuration file. Open and edit the file &lt;code&gt;jupyter_notebook_config.py&lt;/code&gt; under &lt;code&gt;~/.jupyter/&lt;/code&gt; directory. In the configuration file, setting commands are commented by default. To enable the setting, uncomment and edit the code with our information.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# Set options for certfile, ip, password, and toggle off
+# browser auto-opening
+c.NotebookApp.certfile = u&#39;[/absolute/path/to/your/certificate/mycert.pem]&#39;
+c.NotebookApp.keyfile = u&#39;[/absolute/path/to/your/certificate/mykey.key]&#39;
+# Set ip to &#39;*&#39; to bind on all interfaces (ips) for the public server
+c.NotebookApp.ip = &#39;*&#39;
+# The password is generated from step 2
+c.NotebookApp.password = u&#39;sha1:bcd259ccf...&amp;lt;your hashed password here&amp;gt;&#39;
+#
+c.NotebookApp.open_browser = False
+
+# It is a good idea to set a known, fixed port for server access
+c.NotebookApp.port = [user-define-port]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After the configuration, we can now connect to [ip]:[user-define-port] from remote computer to access jupyter notebook.&lt;/p&gt;
+
+&lt;h1 id=&#34;step-4-client-side-setting&#34;&gt;Step 4 - Client side setting&lt;/h1&gt;
+
+&lt;p&gt;If you choose to setup jupyter notebook server through ssh in &lt;a href=&#34;#1-through-ssh&#34;&gt;step 3&lt;/a&gt;, there are little setup should be done on client side.
+Use ssh to connect to server via the port where jupyter notebook is launched and bind it to localhost 8888 port.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ssh -N -L localhost:8888:localhost:[server-port] [user]@[remote-server]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then, open &lt;code&gt;localhost:8888&lt;/code&gt; in browser to access jupyter notebook.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;localhost:8888
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;reference&#34;&gt;Reference&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://jupyter-notebook.readthedocs.io/en/stable/public_server.html&#34;&gt;http://jupyter-notebook.readthedocs.io/en/stable/public_server.html&lt;/a&gt;&lt;/p&gt;
+</description>
+      
+    </item>
+    
+    <item>
       <title>Kaggle Data Clean Challenge Day 1 - Missing Values</title>
-      <link>https://tangsttw.github.io/my_blog/post/kaggle-data-clean-challenge-day-1/</link>
+      <link>https://tangsttw.github.io/blog/post/kaggle-data-clean-challenge-day-1/</link>
       <pubDate>Sun, 08 Apr 2018 14:17:37 +0800</pubDate>
       
-      <guid>https://tangsttw.github.io/my_blog/post/kaggle-data-clean-challenge-day-1/</guid>
+      <guid>https://tangsttw.github.io/blog/post/kaggle-data-clean-challenge-day-1/</guid>
       
         <description>
 
