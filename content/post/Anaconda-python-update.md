@@ -1,7 +1,7 @@
 ---
 title: "Anaconda Python Update"
 date: 2018-04-22T16:26:38+08:00
-draft: true
+draft: false
 description: ""
 tags: [anaconda, python]
 categories: [anaconda]

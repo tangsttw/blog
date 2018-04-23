@@ -6,9 +6,19 @@
     <description>Recent content in Categories on YT Notes Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
+    <lastBuildDate>Sun, 22 Apr 2018 16:26:38 +0800</lastBuildDate>
     
 	<atom:link href="https://tangsttw.github.io/blog/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Anaconda</title>
+      <link>https://tangsttw.github.io/blog/categories/anaconda/</link>
+      <pubDate>Sun, 22 Apr 2018 16:26:38 +0800</pubDate>
+      
+      <guid>https://tangsttw.github.io/blog/categories/anaconda/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Jupyter Notebook</title>

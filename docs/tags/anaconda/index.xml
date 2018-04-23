@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Anaconda on YT Notes Blog</title>
+    <link>https://tangsttw.github.io/blog/tags/anaconda/</link>
+    <description>Recent content in Anaconda on YT Notes Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 22 Apr 2018 16:26:38 +0800</lastBuildDate>
+    
+	<atom:link href="https://tangsttw.github.io/blog/tags/anaconda/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Anaconda Python Update</title>
+      <link>https://tangsttw.github.io/blog/post/anaconda-python-update/</link>
+      <pubDate>Sun, 22 Apr 2018 16:26:38 +0800</pubDate>
+      
+      <guid>https://tangsttw.github.io/blog/post/anaconda-python-update/</guid>
+      <description>Anaconda wrapes python in a pack. It is convenient to use Anaconda to install python when you are new to everything about python.
+Recently, I noticed that my python version is 3.5.x while the newest version of python is 3.6. I found this problem when I was tring to use some modules that contain functions be newly added in version 3.6 and thus get errors.
+My python was installed via Anaconda, so I have to use anaconda to update my python version.</description>
+    </item>
+    
+  </channel>
+</rss>
