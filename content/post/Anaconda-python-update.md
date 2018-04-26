@@ -15,6 +15,7 @@ autoCollapseToc: false
 # You can also define another contentCopyright. e.g. contentCopyright: "This is another copyright."
 contentCopyright: false
 mathjax: true
+thumbnailImage: static/images/cover.jpg
 ---
 
 [Anaconda](https://www.anaconda.com/download/) wrapes python in a pack. It is convenient to use Anaconda to install python when you are new to everything about python.

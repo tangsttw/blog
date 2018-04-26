@@ -1,0 +1,665 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.40.1 with theme Tranquilpeak 0.4.3-BETA">
+    <title>Kaggle Data Clean Challenge Day 1 - Missing Values</title>
+    <meta name="author" content="YT Wang">
+    <meta name="keywords" content=", development, notes, tech, data">
+
+    <link rel="icon" href="https://tangsttw.github.io/blog/favicon.png">
+    
+
+    
+    <meta name="description" content="Kaggle DCC Day 1 Handling Missing values This is the note for day 1 of the 5-day data challenge held by Kaggle. In the first day, the topic is how to deal with missing values.
+Notebook code of the challenge
+Intro Data science is a science based on data and is highly related to data; the quality of data has huge effect on the result. Therefore, it is important to ensure the data quality before executing any analysis on data.">
+    <meta property="og:description" content="Kaggle DCC Day 1 Handling Missing values This is the note for day 1 of the 5-day data challenge held by Kaggle. In the first day, the topic is how to deal with missing values.
+Notebook code of the challenge
+Intro Data science is a science based on data and is highly related to data; the quality of data has huge effect on the result. Therefore, it is important to ensure the data quality before executing any analysis on data.">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Kaggle Data Clean Challenge Day 1 - Missing Values">
+    <meta property="og:url" content="/2018/04/kaggle-data-clean-challenge-day-1---missing-values/">
+    <meta property="og:site_name" content="YT Notes Blog">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="YT Notes Blog">
+    <meta name="twitter:description" content="Kaggle DCC Day 1 Handling Missing values This is the note for day 1 of the 5-day data challenge held by Kaggle. In the first day, the topic is how to deal with missing values.
+Notebook code of the challenge
+Intro Data science is a science based on data and is highly related to data; the quality of data has huge effect on the result. Therefore, it is important to ensure the data quality before executing any analysis on data.">
+    
+    
+
+    
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://tangsttw.github.io/blog/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://tangsttw.github.io/blog/">YT Notes Blog</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://tangsttw.github.io/blog/#about">
+    
+    
+    
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tangsttw.github.io/blog/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tangsttw.github.io/blog/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tangsttw.github.io/blog/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tangsttw.github.io/blog/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tangsttw.github.io/blog/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://tangsttw.github.io/blog/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Kaggle Data Clean Challenge Day 1 - Missing Values
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-04-08T14:17:37&#43;08:00">
+        
+  
+  
+  
+  
+    8 April 2018
+  
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://tangsttw.github.io/blog/categories/kaggle">Kaggle</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              
+
+<h1 id="kaggle-dcc-day-1-handling-missing-values">Kaggle DCC Day 1 Handling Missing values</h1>
+
+<p>This is the note for day 1 of the 5-day data challenge held by Kaggle. In the first day, the topic is how to deal with missing values.</p>
+
+<p><a href="https://www.kaggle.com/tangsttw/data-cleaning-challenge-handling-missing-values">Notebook code of the challenge</a></p>
+
+<h2 id="intro">Intro</h2>
+
+<p>Data science is a science based on data and is highly related to data; the quality of data has huge effect on the result. Therefore, it is important to ensure the data quality before executing any analysis on data.
+Generally, raw data contains some dirty data, and data cleaning is what we need to do right after we recieve a new dataset. The higher quality we have, the better prediction or analysis we can make from the data.</p>
+
+<p>At the first step of data cleaning, we deal with missing values. Sometimes, due to various reasons, there may be several misssing values in data. We need to find them out and fix them.
+Basically, handling missing values can be separate into five part described as following :</p>
+
+<ul>
+<li><a href="#First-look-at-the-data">First look at the data</a></li>
+<li><a href="#How-many-missing-data">How many missing data are there</a></li>
+<li><a href="#Figure-out-why-data-is-missing">Figure out the reason why data is missing</a></li>
+<li><a href="#Drop-missing-values">Drop missing values</a></li>
+<li><a href="#Fill-in-missing-values">Fill in missing values</a></li>
+</ul>
+
+<h2 id="first-look-at-the-data">First look at the data</h2>
+
+<p>The first thing to do with a new dataset is take a look at some of it. This gives a glimpse of the data and helps get an idea of what&rsquo;s going on with the data. We sample several records from the data to perform this step.
+Through this step, you can have some knowledge of how data look like and if there is something strange in data.</p>
+
+<p>In python, we usually use <code>pandas</code> to load data and perform data manipulations. For this step,
+&gt; use pandas&rsquo;s sample(n) function</p>
+
+<h2 id="how-many-missing-data">How many missing data</h2>
+
+<p>If we noticed that there are some missing values in data, we would like to known how many missing data are there is data and the distribution of missing data. In this step, normally we calculate the number of missing values in each feature column, sum up the total, and then calculate the portion of the missing data in the dataset.
+In python pandas, we are looking for <code>NaN</code> vaules which represents missing values. Pandas provides a <code>isnull()</code> function to detect whether the data is a <code>NaN</code>.</p>
+
+<h2 id="figure-out-why-data-is-missing">Figure out why data is missing</h2>
+
+<p>There are basically two conditions that data is missing
+- The data doesn&rsquo;t exist
+- The data is not recorded</p>
+
+<p>Read the data description in the documentation of the dataset to check how the data is collected (automatic fillin or user input) and the meaning of the data; then, use the information to figure out in which condition the missing data is. After understanding the reason, there will be basically two different ways to deal with the missing value respectively.
+- <a href="#Drop-missing-values">Drop the data</a> for the data doesn&rsquo;t exist.
+- <a href="#Fill-in-missing-values">Fill in values</a> for the data is not recorded.</p>
+
+<p>For more advanced techniques about dealing missing values, search with the following kewords.
+Keywords for further reference : <code>data intution</code>, <code>imputation</code></p>
+
+<h2 id="drop-missing-values">Drop missing values</h2>
+
+<p>If the value is missing because it doesn&rsquo;t exist (e.g. there won&rsquo;t be any record about child&rsquo;s age if the person doesn&rsquo;t have child), we should consider to drop them or intentionally keep them as Nan (or set another value representing no-exist).</p>
+
+<h2 id="fill-in-missing-values">Fill in missing values</h2>
+
+<p>The alternative way to deal with missing values is guess a value and fill them in.
+There are several methods to guess the value. Some of them are really simple and fast but naive, some fo them are more complicated and accurate but requires some technique. Which one is better depends on the data. The followings are the ways that you can fill the data cell wit,
+* average of the column of data
+* regression to predict the data
+* missing observation correlation
+* maximum likelihood method</p>
+
+<p>With the guessed value in substitution of missing values, you can use <code>fillna()</code> function in python pandas.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>It seems easy in handling missing values, but actually, it plays an important role in the performance of your analysis and prection result; The qulity of data to some extent influences the performance of algorithms. It requires more effort on data cleaning process.
+There are more knowledge about data intution, imputation, and methods to fill in missing values for further survey.</p>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://tangsttw.github.io/blog/tags/kaggle/">Kaggle</a>
+
+  <a class="tag tag--primary tag--small" href="https://tangsttw.github.io/blog/tags/data-science/">Data Science</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tangsttw.github.io/blog/2018/04/connect-to-jupyter-notebook-on-remote-server/" data-tooltip="Connect to Jupyter Notebook on Remote Server">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tangsttw.github.io/blog/2018/04/kaggle-data-clean-challenge-day-1---missing-values/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tangsttw.github.io/blog/2018/04/kaggle-data-clean-challenge-day-1---missing-values/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tangsttw.github.io/blog/2018/04/kaggle-data-clean-challenge-day-1---missing-values/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 YT Wang. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://tangsttw.github.io/blog/2018/04/connect-to-jupyter-notebook-on-remote-server/" data-tooltip="Connect to Jupyter Notebook on Remote Server">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://tangsttw.github.io/blog/2018/04/kaggle-data-clean-challenge-day-1---missing-values/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://tangsttw.github.io/blog/2018/04/kaggle-data-clean-challenge-day-1---missing-values/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://tangsttw.github.io/blog/2018/04/kaggle-data-clean-challenge-day-1---missing-values/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftangsttw.github.io%2Fblog%2F2018%2F04%2Fkaggle-data-clean-challenge-day-1---missing-values%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Ftangsttw.github.io%2Fblog%2F2018%2F04%2Fkaggle-data-clean-challenge-day-1---missing-values%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Ftangsttw.github.io%2Fblog%2F2018%2F04%2Fkaggle-data-clean-challenge-day-1---missing-values%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+    <h4 id="about-card-name">YT Wang</h4>
+    
+      <div id="about-card-bio">Developer, Data Scientist, and Cat-lover</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Student
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Brisbane, Australia
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tangsttw.github.io/blog/2018/04/anaconda-python-update/">
+                <h3 class="media-heading">Anaconda Python Update</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Anaconda wrapes python in a pack. It is convenient to use Anaconda to install python when you are new to everything about python.
+Recently, I noticed that my python version is 3.5.x while the newest version of python is 3.6. I found this problem when I was tring to use some modules that contain functions be newly added in version 3.6 and thus get errors.
+My python was installed via Anaconda, so I have to use anaconda to update my python version.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tangsttw.github.io/blog/2018/04/connect-to-jupyter-notebook-on-remote-server/">
+                <h3 class="media-heading">Connect to Jupyter Notebook on Remote Server</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">If you installed jupyter notebook on a server and would like to access the jupyter notebook application from another computer, there are several steps need to be done. Follow the instructions below, then you can access the browser-based jupyter notebook from your computer.
+Step 1 - Generate configuration file The first thing to be done is to generate a configuration file. In this file, we can configure the password used to login and access jupyter notebook from remote, and also configure the port at which will jupyter notebook be launched.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://tangsttw.github.io/blog/2018/04/kaggle-data-clean-challenge-day-1---missing-values/">
+                <h3 class="media-heading">Kaggle Data Clean Challenge Day 1 - Missing Values</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Kaggle DCC Day 1 Handling Missing values This is the note for day 1 of the 5-day data challenge held by Kaggle. In the first day, the topic is how to deal with missing values.
+Notebook code of the challenge
+Intro Data science is a science based on data and is highly related to data; the quality of data has huge effect on the result. Therefore, it is important to ensure the data quality before executing any analysis on data.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         3 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://lh3.googleusercontent.com/Nr97hzQC2cx8lW9n_w98WOBNB0D03aB6nC6EtAbeqO5aZkZcxadrsrlxYGrOcmFReZk6IV5hOk4k_Fj-iNl7oPwQB4LZGXRO9zKtGsUaWjQMb0rRtuXnRe1_ESR6lUfs5XLIWogj=w2400');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://tangsttw.github.io/blog/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/tangsttw.github.io\/blog\/2018\/04\/kaggle-data-clean-challenge-day-1---missing-values\/';
+          
+            this.page.identifier = '\/2018\/04\/kaggle-data-clean-challenge-day-1---missing-values\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'notesblog-1';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+    
+  </body>
+</html>
+

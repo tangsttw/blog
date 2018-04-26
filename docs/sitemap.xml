@@ -1,116 +1,96 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<?xml-stylesheet type="text/xsl" href="https://tangsttw.github.io/blog/sitemap.xsl"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://tangsttw.github.io/blog/about/</loc>
-    <lastmod>2018-03-31T01:25:52+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tangsttw.github.io/blog/post/anaconda-python-update/</loc>
+    <loc>https://tangsttw.github.io/blog/2018/04/anaconda-python-update/</loc>
     <lastmod>2018-04-22T16:26:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://tangsttw.github.io/blog/post/jupyter-notebook-remote-server/</loc>
+    <loc>https://tangsttw.github.io/blog/2018/04/connect-to-jupyter-notebook-on-remote-server/</loc>
     <lastmod>2018-04-09T14:57:53+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://tangsttw.github.io/blog/post/kaggle-data-clean-challenge-day-1/</loc>
+    <loc>https://tangsttw.github.io/blog/2018/04/kaggle-data-clean-challenge-day-1---missing-values/</loc>
     <lastmod>2018-04-08T14:17:37+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://tangsttw.github.io/blog/tags/anaconda/</loc>
     <lastmod>2018-04-22T16:26:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tangsttw.github.io/blog/categories/anaconda/</loc>
     <lastmod>2018-04-22T16:26:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://tangsttw.github.io/blog/archives/</loc>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tangsttw.github.io/blog/categories/</loc>
     <lastmod>2018-04-22T16:26:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tangsttw.github.io/blog/tags/data-science/</loc>
     <lastmod>2018-04-08T14:17:37+08:00</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tangsttw.github.io/blog/tags/jupyter-notebook/</loc>
     <lastmod>2018-04-09T14:57:53+08:00</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tangsttw.github.io/blog/categories/jupyter-notebook/</loc>
     <lastmod>2018-04-09T14:57:53+08:00</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tangsttw.github.io/blog/tags/kaggle/</loc>
     <lastmod>2018-04-08T14:17:37+08:00</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tangsttw.github.io/blog/categories/kaggle/</loc>
     <lastmod>2018-04-08T14:17:37+08:00</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tangsttw.github.io/blog/post/</loc>
     <lastmod>2018-04-22T16:26:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tangsttw.github.io/blog/tags/python/</loc>
     <lastmod>2018-04-22T16:26:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tangsttw.github.io/blog/tags/</loc>
     <lastmod>2018-04-22T16:26:38+08:00</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://tangsttw.github.io/blog/</loc>
-    <lastmod>2018-03-31T01:25:52+08:00</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2018-04-22T16:26:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
